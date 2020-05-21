@@ -1,0 +1,36 @@
+LECTURE: KICKOFF
+
+Goal of Ruby Lessons: 
+- fluency in language and syntax
+- think like a programmer 
+- build applications 
+- debugging mindset 
+
+3 main buckets of learning: 
+- learning to program procedurally 
+- OOP
+- other stuff
+    - testing 
+    - blocks
+    - tools
+    - problem solving
+    - language familiarity 
+
+Learning to code vs. learning to program 
+- first syntax 
+- second, building apps 
+- pseudo code, jumping between two is frustrating 
+
+Looking for help
+- search using the right phrases
+  - use the stack trace 
+  - reading error messages
+  - not rails docs 
+
+Asking for help
+- treat Launch School like coworkers
+- push everything to github
+- forums 
+- chatrooms 
+- TA office hours 
+
