@@ -1,0 +1,23 @@
+RB101 LESSON 2, DEBUGGING 
+
+- learn to read the stack trace, and wehre error 
+messages show up 
+
+ONLINE RESOURCES 
+- search engine
+- ruby documentation 
+- stack overflow 
+
+STEPS TO DEBUGGING 
+- reproduce the error
+- determine the boundaries of the error 
+- trace the code
+- understand the problem well
+- implement a fix
+- test the fix
+- techniques: 
+      Line by line
+      rubber duck
+      walking away
+      using pry
+-

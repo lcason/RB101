@@ -1,17 +1,6 @@
-def car(new_car)
-  make = make(new_car)
-  model = model(new_car)
-  [make, model]
-end
+# using a while loop, print 5 random numbers between 0 and 99
+numbers = []
 
-def make(new_car)
-  new_car.split(" ")[0]
+while (numbers.size < 5)
+  numbers.push(rand(1..99))
 end
-
-def model(new_car)
-  new_car.split(" ")[1]
-end
-
-make, model = car("Ford Mustang")
-make == "Ford"         # => true
-puts model.start_with?("M") # => NoMethodError:
