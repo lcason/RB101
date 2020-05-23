@@ -48,42 +48,44 @@ operator = input
     divide 1 and 2
 =end
 
+require 'yaml'
+require 'pry'
+MESSAGES = YAML.load_file('calculator_messages.yml')
+
+# METHODS 
 def prompt(message)
   Kernel.puts("=> #{message}")
 end
 
-def valid_number?(number)
-  number.to_i() != 0
+def valid_number?(num)
+  #binding.pry
+ num.to_i.to_s == num
 end
 
 def operation_to_message(op)
-  case op
+  message = case op
   when '+' then 'adding'
   when '-' then 'subtracting'
   when '*' then 'multiplying'
   when '/' then 'dividing'
   end
+  message 
 end
 
+# VARS 
 num1 = nil
 num2 = nil
 operator = nil
 name = ''
-operator_prompt = <<-MSG
 
-  What operation would you like to perform?
-  multiply -- *
-  divide   -- /
-  subtract -- -
-  add      -- +
-MSG
 
-prompt("Welcome to Calculator! Enter your name:")
+# BEGIN PROGRAM
+prompt(MESSAGES['welcome'])
 
 loop do
   name = Kernel.gets().chomp
   if name.empty?()
-    prompt("Please use a valid name")
+    prompt(MESSAGES['valid_name'])
   else
     break
   end
@@ -93,26 +95,32 @@ prompt("Hi #{name}")
 
 loop do
   loop do
-    prompt('What is your first number: ')
-    num1 = Kernel.gets().to_f
-    break if valid_number?(num1)
-    prompt("Hmmm.... that doesn't look like a valid number.")
+    prompt(MESSAGES['first_number'])
+    num1 = Kernel.gets().chomp
+    if valid_number?(num1)
+      num1 = num1.to_i
+      break
+    end
+    prompt(MESSAGES['invalid_number'])
   end
 
   loop do
-    prompt('What is your second number:')
-    num2 = Kernel.gets().to_f
-    break if valid_number?(num2)
-    prompt("Hmmm.... that doesn't look like a valid number.")
+    prompt(MESSAGES['second_number'])
+    num2 = Kernel.gets().chomp
+    if valid_number?(num2)
+      num2 = num2.to_i
+      break
+    end
+    prompt(MESSAGES['invalid_number'])
   end
 
   loop do
-    prompt(operator_prompt)
+    prompt(MESSAGES['operator_prompt'])
     operator = Kernel.gets().chomp
     if %(* / + -).include?(operator)
       break
     else
-      prompt('Must choose *, /, +, or /')
+      prompt('invalid_operator')
     end
   end
 
@@ -126,15 +134,16 @@ loop do
             end
 
   prompt("The result is #{result}.")
-  prompt("Do you want to perform another calculation? (Y for yes, N for no)")
+  prompt(MESSAGES['another_calculation'])
   answer = Kernel.gets().chomp()
   break unless answer.downcase == 'y'
 end
 
-prompt("Thank you for using the calculator. Goodbye!")
+prompt(MESSAGES['goodbye'])
 
 # TO DO
 # check that numbers are valid
 # check that operators are valid
 # deal with zero division errors
 # to how many places should floats be returned
+

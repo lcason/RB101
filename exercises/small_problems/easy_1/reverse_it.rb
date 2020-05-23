@@ -4,26 +4,20 @@
 ==================================================
 
 PROBLEM:
-Write a method that takes one argument, a string, and
-returns a new string with the words in reverse order.
 
 MENTAL MODEL:
 
-INPUT: string
+INPUT:
 
-OUTPUT: string, words in reverse order
+OUTPUT:
 
 EDGE CASES:
 
 ASSUMPTIONS:
--maintains casing of words
 
 QUESTIONS:
--how should it treat punctuation? maintain its location
-in the string? ex "Hello, world" => "world, Hello" or
-eliminate it?
 
-PSEUDO: extract the words into an array, and then reverse the array
+PSEUDO:
 
 ==================================================
 EVALUATION
