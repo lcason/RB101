@@ -30,30 +30,23 @@ apr = nil
 duration_years = nil
 
 # METHODS=================
-def prompt(input, input_2='')
-  puts "=> #{input}#{input_2}"
+def prompt(input_1, input_2='')
+  puts "=> #{input_1}#{input_2}"
 end
 
-def input?(input)
-  (integer?(input) && input.to_i >= 0) || (float?(input) && input.to_f >= 0)
+def positive_float?(input)
+  /\d/.match(input) && /^\d*\.?\d*$/.match(input) && input.to_f >= 0
 end
 
-def integer?(input)
-  /^\d+$/.match(input)
-end
-
-def float?(input)
-  /\d/.match(input) && /^\d*\.?\d*$/.match(input)
-end
-
-def get_input(prompt_message)
+def get_valid_numerical_input(prompt_message)
   loop do
     prompt(MESSAGES[prompt_message])
-    input = gets.chomp
-    if input?(input)
-      input = input.to_f.round(2)
-      return input
+    number = gets.chomp
+    if positive_float?(number)
+      number = number.to_f.round(2)
+      return number
     end
+    # The prompt message and invalid message names must match in the yaml.
     prompt(MESSAGES["invalid_#{prompt_message}"])
   end
 end
@@ -63,9 +56,9 @@ end
 prompt(MESSAGES['welcome'])
 
 loop do
-  loan_amount = get_input('loan_amount')
-  apr = get_input('apr')
-  duration_years = get_input('duration_years')
+  loan_amount = get_valid_numerical_input('loan_amount')
+  apr = get_valid_numerical_input('apr')
+  duration_years = get_valid_numerical_input('duration_years')
 
   monthly_interest = apr / 100 / 12
   duration_months = duration_years * 12
@@ -79,4 +72,3 @@ loop do
   break unless input == 'y'
 end
 
-prompt(MESSAGES['goodbye'])
