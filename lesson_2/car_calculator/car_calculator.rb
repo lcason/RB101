@@ -61,14 +61,15 @@ loop do
   duration_years = get_valid_numerical_input('duration_years')
 
   monthly_interest = apr / 100 / 12
-  duration_months = duration_years * 12
-  monthly_payment = loan_amount * (monthly_interest / (1 - (1 + monthly_interest)**(-duration_months)))
+  duration_months = (duration_years * 12).to_i
+  monthly_payment = (loan_amount * (monthly_interest / (1 - (1 + monthly_interest)**(-duration_months)))).round(2)
 
-  prompt(MESSAGES['monthly_payment'], monthly_payment.round(2))
-  prompt(MESSAGES['loan_duration_months'], duration_months.to_i)
+  prompt(MESSAGES['monthly_payment'], monthly_payment)
+  prompt(MESSAGES['loan_duration_months'], duration_months)
   prompt(MESSAGES['monthly_interest'], (monthly_interest * 100).round(2))
   prompt(MESSAGES['calculate_again'])
   input = gets.chomp.downcase
   break unless input == 'y'
 end
 
+prompt(MESSAGES['goodbye'])
