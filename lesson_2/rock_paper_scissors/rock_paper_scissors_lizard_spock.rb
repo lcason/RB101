@@ -27,8 +27,8 @@ end
 
 def welcome
   prompt("Welcome to ROCK PAPER SCISSORS LIZARD SPOCK!")
-  prompt("You will play #{ROUNDS} rounds.\
-          At the end I will declare a GRAND WINNER!")
+  prompt("You will play #{ROUNDS} rounds."\
+         " At the end I will declare a GRAND WINNER!")
 end
 
 def p1_beats_p2?(p1, p2)
@@ -37,8 +37,8 @@ end
 
 def display_round_results(player, computer, round_num)
   prompt("ROUND #{round_num} RESULTS")
-  prompt("You chose: #{CHOICE_AND_WORD[player]}, \
-          computer chose: #{CHOICE_AND_WORD[computer]}")
+  prompt("You chose: #{CHOICE_AND_WORD[player]}" \
+          "computer chose: #{CHOICE_AND_WORD[computer]}")
   if p1_beats_p2?(player, computer)
     prompt('You won!')
   elsif p1_beats_p2?(computer, player)
