@@ -38,7 +38,7 @@ end
 def display_round_results(player, computer, round_num)
   prompt("ROUND #{round_num} RESULTS")
   prompt("You chose: #{CHOICE_AND_WORD[player]}" \
-          "computer chose: #{CHOICE_AND_WORD[computer]}")
+          " computer chose: #{CHOICE_AND_WORD[computer]}")
   if p1_beats_p2?(player, computer)
     prompt('You won!')
   elsif p1_beats_p2?(computer, player)
