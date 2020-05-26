@@ -16,7 +16,7 @@ BEATS = {
   'sp'  => ['sc', 'r'],
   'l'   => ['sp', 'p']
 }
-
+ROUNDS = 5
 user_choice = ''
 
 # METHODS================
@@ -25,11 +25,20 @@ def prompt(message)
   puts(" => #{message}")
 end
 
+def welcome
+  prompt("Welcome to ROCK PAPER SCISSORS LIZARD SPOCK!")
+  prompt("You will play #{ROUNDS} rounds.\
+          At the end I will declare a GRAND WINNER!")
+end
+
 def p1_beats_p2?(p1, p2)
   BEATS[p1].include?(p2)
 end
 
-def display_round_results(player, computer)
+def display_round_results(player, computer, round_num)
+  prompt("ROUND #{round_num} RESULTS")
+  prompt("You chose: #{CHOICE_AND_WORD[player]}, \
+          computer chose: #{CHOICE_AND_WORD[computer]}")
   if p1_beats_p2?(player, computer)
     prompt('You won!')
   elsif p1_beats_p2?(computer, player)
@@ -39,8 +48,14 @@ def display_round_results(player, computer)
   end
 end
 
-def display_final_results(player, computer, ties)
+def display_current_results(player, computer, ties)
   prompt("Player wins: #{player}, Computer wins: #{computer}, Ties: #{ties}")
+end
+
+def display_final_results(player, computer, ties)
+  puts("\n\n")
+  prompt("FINAL RESULTS")
+  display_current_results(player, computer, ties)
   if player > computer
     prompt("You are the grand winner!")
   elsif player < computer
@@ -50,46 +65,55 @@ def display_final_results(player, computer, ties)
   end
 end
 
+def get_valid_user_choice(round_num)
+  loop do
+    puts("\n\n")
+    prompt("ROUND #{round_num}")
+    prompt("Choose one: ")
+    CHOICE_AND_WORD.each { |choice, word| prompt "#{choice} for #{word}" }
+    user_choice = gets.chomp
+    system "clear"
+    if CHOICE_AND_WORD.key?(user_choice)
+      return user_choice
+    end
+    prompt('Thats not a valid choice')
+  end
+end
+
 # PROGRAM=================
-loop do     # => full program loop, does 5 rounds of r/p/sc/l/sp, determines grand winner, asks if play again
+loop do # => plays 5 rounds, determines grand winner, asks play again?
+  system "clear"
   player_win_count = 0
   computer_win_count = 0
   tie_count = 0
-  round = 1
+  this_round = 1
 
-  loop do   # => goes through 5 rounds of r/p/sc/l/sp,
-    loop do # => get a valid choice from user, r/p/sc/l/sp.
-      puts("\n\n")
-      prompt("ROUND #{round}")
-      prompt("Choose one: ")
-      CHOICE_AND_WORD.each { |choice, word| prompt "#{choice} for #{word}" }
-      user_choice = gets.chomp
+  welcome()
 
-      break if CHOICE_AND_WORD.key?(user_choice)
-      prompt('Thats not a valid choice')
-    end
-
+  loop do # => does 5 rounds of game
+    user_choice = get_valid_user_choice(this_round)
     computer_choice = CHOICE_AND_WORD.keys.sample
 
-    prompt(" You chose: #{CHOICE_AND_WORD[user_choice]}, computer chose: #{CHOICE_AND_WORD[computer_choice]}")
-
-    display_round_results(user_choice, computer_choice)
+    display_round_results(user_choice, computer_choice, this_round)
 
     if p1_beats_p2?(user_choice, computer_choice)
       player_win_count += 1
     elsif p1_beats_p2?(computer_choice, user_choice)
       computer_win_count += 1
-    else 
+    else
       tie_count += 1
     end
-    round += 1
-    break if round == 6
+    this_round += 1
+
+    display_current_results(player_win_count, computer_win_count, tie_count)
+
+    break if this_round == ROUNDS + 1
   end
 
-  puts("\n\n")
   display_final_results(player_win_count, computer_win_count, tie_count)
   prompt('Do you want to play again? (Y for yes, any other key for no)')
   answer = gets.chomp
   break unless answer.downcase == 'y'
 end
+
 prompt("Goodbye!")

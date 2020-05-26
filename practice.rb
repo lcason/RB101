@@ -1,8 +1,11 @@
-def greeting
-  "Hello"
-end 
+def name
+  "George"
+end
 
-sup = greeting 
+name = "Lisa"
 
-puts sup.object_id
-puts greeting.object_id
+def display_name(name)
+  puts name
+end
+
+display_name(name)
