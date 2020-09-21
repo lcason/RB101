@@ -1,0 +1,15 @@
+PRACTICE PROBLEMS
+EASY 1
+
+Q1. 
+I would expect it to print [1,2,2,3] because ,uniq does not mutate the caller.
+
+Q2. 
+! usually means either 'not', or that the method will mutate the caller. 
+!= means not equal to. !username would be, if that is not the username
+putting it at the end of a method implies a method that modifies the caller, like 
+uniq!
+!! turns any object into their boolean equivalent 
+! turns any object into the opposite of their boolean equivalent 
+? : is the ternary operator for if else 
+

@@ -24,6 +24,7 @@ require "yaml"
 require "pry"
 
 # VARIABLES===============
+
 MESSAGES = YAML.load_file('car_calculator_messages.yml')
 loan_amount = nil
 apr = nil
@@ -73,3 +74,9 @@ loop do
 end
 
 prompt(MESSAGES['goodbye'])
+
+# Given the hash below: 
+flintstones = { "Fred" => 0, "Wilma" => 1, "Barney" => 2, "Betty" => 3, "BamBam" => 4, "Pebbles" => 5 }
+# turn this into an arra containing only two elements, Barneys name and barneys number. 
+flintstones.assoc("Barney")
+#=> ["Barney", 2]

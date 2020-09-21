@@ -12,6 +12,7 @@
 # max_by
 # member? 
 # min_by
+
 # slice_after
 # slice_befor
 
@@ -248,5 +249,121 @@ a.clear
 
 
 
+# DAY 2
+
+# how could I see if 'It's me, hello!' ends with 'ello!'
+"It's me. hello!".end_with?('ello!')
+
+
+# how could I check if string 'hello' contains 'lo'? 
+'hello'.include?("lo")
+
+# how could I get the index of 'e' in 'hello'? 
+'hello'.index('e')
+
+# how could you replace the contents of a string and leave the object id intact? 
+'hello'.replace('something else ')
+
+# how could I insert 'Lauren' into 'Hello!' so it reads 'Hello Lauren!'
+'Hello!'.insert(5, ' Lauren') # => inserts 'Lauren' immediately before index 5
+
+# how coud I make sure the total length of my line + a string == 40, with the extra characters added to the left? 
+'hello'.ljust(40)
+
+# how could I make an array from 'panda' that returns ['pan', 'd', 'a'] from input 'd'?
+'panda'.partition('d')
+
+# how could I turn 'panda' into 'adnap'?
+'panda'.reverse!
+
+# how could  return the string from index 0-4 in string ' Hello Lauren!' 
+'Hello There'[0..4]
+# or 
+'Hello There'.slice(0..4)
+
+# how could I split a string at each space? 'Hi There' => ['Hi', 'There']
+"Hi There".split
+
+# how could I turn "Hello little doggy     " to "Helo litle dogy "
+"Hello little doggy     " .squeeze
+
+# how could I check if "hello" starts with he? 
+"hello".start_with?('he')
+
+# how could I turn "     hello      " into 'hello'? 
+'     hello    '.strip
+
+# how could I substitute all vowels in "hello Lauren" to *? 
+"hello lauren".sub(/[aeiou]/, '*')
+
+# how could I change 'abc' to 'abd'? 
+'abc'.succ
+
+# how could I turn '9.2' into rational number (46/5)?
+'9.2'.to_r
+
+# how could I turn 'hello' into 'hippo'
+'hello'.tr('el', 'ip') #=> replaces e with i, l with p
+
+# how could I turn 'hello' into 'hero'?
+'hello'.tr_s('l','r') #=> turns l into r, and reduces duplicates in the regions affected by translation
+
+# how could  I get an array of characters between d and h? 
+'d'.upto('h')
+
+# how could I check that hash_1 is a subset of hash_2? ( hash one has same entries)
+h1 = {a:1, b:2}
+h2 = {a:1, b:2, c:3}
+h1 < h2    #=> true
+h1 > h2    #=> false
+h2 > h1    #=> true
+h1 > h1    #=> false
+
+# how do i return the key value pair using the key in a hash? 
+, "b", "c" ]}
+h.assoc("letters")  #=> ["letters", ["a", "b", "c"]]
+
+# how do I empty out a hash? 
+h.clear
+
+# how do I rmeobe all nil values from a hash? 
+hash.compact
+
+# how can I return the default value of a hash? 
+h.default
+
+# how can I set the default value of an already made hash? 
+h.default = 'go fish'
+
+# how could I remove a key value pair from a hash? 
+hash.delete('the key')
+
+# how could I replace the contents of hash a with hash b? 
+hash_a.replace(hash_b)
+
+# how could I make a new hash from hash_a, where the values are keys, and the keys are values?
+h = { "n" => 100, "m" => 100, "y" => 300, "d" => 200, "a" => 0 }
+h.invert   #=> {0=>"a", 100=>"m", 200=>"d", 300=>"y"}
+
+#how could I get an array of all the keys in my_hash? 
+my_hash.keys
+
+
+# how could I combine hash_1 and hash_2? 
+h1 = { "a" => 100, "b" => 200 }
+h2 = { "b" => 246, "c" => 300 }
+h3 = { "b" => 357, "d" => 400 }
+h1.merge          #=> {"a"=>100, "b"=>200}
+h1.merge(h2)      #=> {"a"=>100, "b"=>246, "c"=>300}
+h1.merge(h2, h3)  #=> {"a"=>100, "b"=>357, "c"=>300, "d"=>400}
+
+# how could I transform all the keys in h = { a: 1, b: 2, c: 3 }
+# to strings? 
+h = { a: 1, b: 2, c: 3 }
+h.transform_keys! {|k| k.to_s }  #=> { "a" => 1, "b" => 2, "c" => 3 }
+
+# how could I add 1 to all the values in a hash? 
+h = { a: 1, b: 2, c: 3 }
+h.transform_values {|v| v * v + 1 }  #=> { a: 2, b: 5, c: 10 }
 
 
